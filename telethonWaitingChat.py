@@ -11,11 +11,17 @@ client = TelegramClient('anon', api_id, api_hash)
 async def my_event_handler(event):
     print(event.photo)
     print(event.file)
+    print(event.media)
     print(event.raw_text)
-    if event.raw_text:
-        sendMessage(message=event.raw_text)
-    if event.file:
-        sendFile(file=event.file)
+    print(event)
+    # await client.send_message(entity='Dev_Channel_Show_news', message=event.raw_text)
+    # await client.send_message(entity='Dev_Channel_Show_news', file=event.media)
+    await client.send_file(entity='Dev_Channel_Show_news', file=event.media, caption=event.raw_text)
+    # await client.send_media(entity='Dev_Channel_Show_news', message=event.media)
+    # if event.raw_text:
+    #     sendMessage(message=event.raw_text)
+    # if event.file:
+    #     sendFile(file=event.file)
     # client.send_message(entity='Dev_Channel_Show_news', message=event.raw_text)
 
 client.start()
